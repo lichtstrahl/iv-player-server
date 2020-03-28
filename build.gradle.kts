@@ -18,18 +18,22 @@ repositories {
 }
 
 dependencies {
+	// Spring Boot
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-websocket")
-	implementation("org.jetbrains.kotlin:kotlin-reflect")
-	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-	implementation("mysql:mysql-connector-java")
-	implementation("com.zaxxer:HikariCP")
 	providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
 	}
-
+	implementation("org.springframework.boot:spring-boot-starter-security")
+	// Kotlin
+	implementation("org.jetbrains.kotlin:kotlin-reflect")
+	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+	// MySQL
+	implementation("mysql:mysql-connector-java")
+	implementation("com.zaxxer:HikariCP")
 	// GSON
 	implementation("com.google.code.gson:gson:2.8.5")
 }
