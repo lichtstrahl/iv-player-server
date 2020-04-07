@@ -34,18 +34,29 @@ class RoomService {
                     user
             )
             newRoom = roomRepository.save(newRoom)
-            return RoomEntityDTO(
-                    newRoom.id!!,
-                    newRoom.name,
-                    newRoom.createDate,
-                    newRoom.host,
-                    newRoom.live,
-                    newRoom.lastConnectDate
-            )
+            return toEntityDTO(newRoom)
         }
 
         val error = "User with login=${dto.login} not found"
         logger.warn(error)
         throw RuntimeException(error)
     }
+
+    fun getRoomListForUser(login: String): List<RoomEntityDTO> {
+        return roomRepository.findByHost(login)
+                .map { toEntityDTO(it) }
+    }
+
+    fun getAllRooms(): List<RoomEntityDTO> {
+        return roomRepository.findAll().map { toEntityDTO(it) }
+    }
+
+    private fun toEntityDTO(room: Room): RoomEntityDTO = RoomEntityDTO(
+            room.id!!,
+            room.name,
+            room.createDate,
+            room.host,
+            room.live,
+            room.lastConnectDate
+    )
 }
