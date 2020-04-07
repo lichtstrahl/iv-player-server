@@ -1,5 +1,6 @@
 package iv.spring.ws.server.controller
 
+import iv.spring.ws.server.data.dto.AuthResponse
 import iv.spring.ws.server.data.user.UserCreateDTO
 import iv.spring.ws.server.data.user.UserEntityDTO
 import iv.spring.ws.server.data.user.UserService
@@ -7,10 +8,7 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.ResponseBody
+import org.springframework.web.bind.annotation.*
 
 @Controller
 @RequestMapping("/api/users")
@@ -24,5 +22,13 @@ class UserController {
     @PostMapping("/create")
     fun createUser(@RequestBody userDTO: UserCreateDTO): UserEntityDTO {
         return userService.createUser(userDTO)
+    }
+
+    @ResponseBody
+    @GetMapping("/auth")
+    fun authUser(@RequestParam(name = "login") login: String, @RequestParam(name = "password") password: String): AuthResponse {
+        val auth: Boolean = userService.authUser(login, password)
+        val user: UserEntityDTO = userService.getUser(login)
+        return AuthResponse(user, auth)
     }
 }
