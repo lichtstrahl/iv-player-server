@@ -7,9 +7,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 class SecurityConfig: WebSecurityConfigurerAdapter() {
     override fun configure(http: HttpSecurity?) {
-        http!!
-                .requiresChannel()
-                .anyRequest()
-                .requiresSecure()
+//        http!!
+//                .requiresChannel()
+//                .anyRequest()
+//                .requiresSecure()
     }
 }

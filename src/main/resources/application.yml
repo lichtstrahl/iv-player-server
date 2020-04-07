@@ -13,12 +13,12 @@ spring:
     hibernate:
       ddl-auto: validate
 
-server:
-  ssl:
-    key-store-type: PKCS12
-    key-store: classpath:keystore.p12
-    key-store-password: i1g9o9r7
-    key-alias: tomcat
+#server:
+#  ssl:
+#    key-store-type: PKCS12
+#    key-store: classpath:keystore.p12
+#    key-store-password: i1g9o9r7
+#    key-alias: tomcat
 
 # Не выводить в логах CONDITIONS EVALUATION REPORT при старте (только в случае ошибки)
 logging:
