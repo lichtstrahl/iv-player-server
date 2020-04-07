@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://206.81.20.220:3306/railway?userUnicode=yes&characterEncoding=utf8&reconnect=true
+    url: jdbc:mysql://206.81.20.220:3306/iv-player?userUnicode=yes&characterEncoding=utf8&reconnect=true
     username: igor
     password: igor
     driver-class-name: com.mysql.cj.jdbc.Driver
