@@ -13,12 +13,13 @@ spring:
     hibernate:
       ddl-auto: validate
 
-#server:
-#  ssl:
-#    key-store-type: PKCS12
-#    key-store: classpath:keystore.p12
-#    key-store-password: i1g9o9r7
-#    key-alias: tomcat
+server:
+  ssl:
+    key-store-type: PKCS12 # Тип хранилища ключей (альтернатива JKS)
+    key-store: classpath:keystore/iv-player.p12 # Путь до хранилища ключей
+    key-store-password: i1g9o9r7
+    key-alias: iv-player
+
 
 # Не выводить в логах CONDITIONS EVALUATION REPORT при старте (только в случае ошибки)
 logging:
