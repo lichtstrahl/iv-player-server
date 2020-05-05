@@ -16,9 +16,9 @@ spring:
 server:
   ssl:
     key-store-type: PKCS12 # Тип хранилища ключей (альтернатива JKS)
-    key-store: classpath:keystore/iv-player.p12 # Путь до хранилища ключей
+    key-store: classpath:keystore/key-store.p12 # Путь до хранилища ключей (сгенерирован через openssl -export)
     key-store-password: i1g9o9r7
-    key-alias: iv-player
+    key-alias: server
 
 
 # Не выводить в логах CONDITIONS EVALUATION REPORT при старте (только в случае ошибки)
