@@ -21,11 +21,11 @@ class WSHandler: TextWebSocketHandler() {
 
     override fun afterConnectionEstablished(session: WebSocketSession) {
         super.afterConnectionEstablished(session)
-        logger.debug("connect")
+        wsService.afterConnectionOpen(session)
     }
 
     override fun afterConnectionClosed(session: WebSocketSession, status: CloseStatus) {
         super.afterConnectionClosed(session, status)
-        logger.debug("disconnect")
+        wsService.afterConnectionClose(session)
     }
 }
