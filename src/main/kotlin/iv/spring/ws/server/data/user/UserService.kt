@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.lang.RuntimeException
 import java.util.*
+import java.util.stream.Collectors
 
 @Service
 class UserService {
@@ -63,7 +64,7 @@ class UserService {
         throw RuntimeException(error)
     }
 
-    private fun toEntityUserDTO(user: User): UserEntityDTO
+    fun toEntityUserDTO(user: User): UserEntityDTO
             = UserEntityDTO(
             user.id!!,
             user.login,
@@ -73,6 +74,12 @@ class UserService {
             user.lastAccessTime,
             user.uuid
     )
+
+    fun toEntityUserDTO(users: List<User>): List<UserEntityDTO>
+            = users
+                .stream()
+                .map { this.toEntityUserDTO(it) }
+                .collect(Collectors.toList())
 
     private fun generateUUID(id: Long, login: String)
             = String.format("%d-%s-%02d", id, login, Random().nextInt(100))

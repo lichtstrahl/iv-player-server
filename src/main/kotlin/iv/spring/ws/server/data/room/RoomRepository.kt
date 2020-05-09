@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository
 @Repository
 interface RoomRepository: JpaRepository<Room, Long> {
     fun findByHost(login: String): List<Room>
+    fun findRoomByName(name: String): Room?
 }
