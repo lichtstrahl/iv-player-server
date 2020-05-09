@@ -14,9 +14,12 @@ import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry
 class WSConfig: WebSocketConfigurer {
     override fun registerWebSocketHandlers(registry: WebSocketHandlerRegistry) {
         registry.addHandler(wsHandler(), "/ws-handler")
-        registry.addHandler(TicTacWebSocket(), "ws/tic-tac")
+        registry.addHandler(ticTacSocket(), "ws/tic-tac")
     }
 
     @Bean
     fun  wsHandler(): WebSocketHandler = WSHandler()
+
+    @Bean
+    fun ticTacSocket(): TicTacWebSocket = TicTacWebSocket()
 }
