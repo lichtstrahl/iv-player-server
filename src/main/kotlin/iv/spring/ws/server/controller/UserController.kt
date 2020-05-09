@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*
 @Controller
 @RequestMapping("/api/users")
 class UserController: BaseController() {
-    val logger: Logger = LoggerFactory.getLogger(this.javaClass)
 
     @Autowired
     lateinit var userService: UserService
