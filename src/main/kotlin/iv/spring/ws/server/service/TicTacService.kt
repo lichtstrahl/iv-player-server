@@ -9,15 +9,14 @@ import org.springframework.web.socket.WebSocketSession
 class TicTacService {
     private val logger: Logger = LoggerFactory.getLogger(this.javaClass)
     fun afterConnectionClose(socketSession: WebSocketSession) {
-        logger.debug("connection close")
+        logger.info("connection close")
     }
 
     fun afterConnectionOpen(socketSession: WebSocketSession) {
-        logger.debug("connection open")
+        logger.info("connection open")
     }
 
     fun handleMessage(message: String) {
-        logger.debug("Handle message")
-        logger.info(message)
+        logger.info("Handle message: $message")
     }
 }
