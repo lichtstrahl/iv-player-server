@@ -1,6 +1,7 @@
 package iv.spring.ws.server.controller
 
 import io.swagger.annotations.ApiOperation
+import iv.spring.ws.server.aspect.LogAspect
 import iv.spring.ws.server.data.dto.BaseResponse
 import iv.spring.ws.server.data.room.RoomCreateDTO
 import iv.spring.ws.server.data.room.RoomEntityDTO
@@ -22,18 +23,21 @@ class RoomController: BaseController() {
     @Autowired
     lateinit var userService: UserService
 
+    @LogAspect
     @ResponseBody
     @PostMapping("/create")
     fun createRoom(@RequestBody dto:RoomCreateDTO): RoomEntityDTO {
         return roomService.createRoom(dto)
     }
 
+    @LogAspect
     @ResponseBody
     @GetMapping("/all")
     fun getAll(): List<RoomEntityDTO> {
         return roomService.getAllRooms()
     }
 
+    @LogAspect
     @ResponseBody
     @GetMapping("/for-user")
     @ApiOperation("Получения списка комнат, в которых данный пользователь являлся host-ом")
@@ -41,6 +45,7 @@ class RoomController: BaseController() {
         return roomService.getRoomListForUser(login)
     }
 
+    @LogAspect
     @ResponseBody
     @GetMapping("/users")
     @ApiOperation("Получение пользователей в комнате")
