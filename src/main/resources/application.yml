@@ -13,12 +13,13 @@ spring:
     hibernate:
       ddl-auto: validate
 
-server:
-  ssl:
-    key-store-type: PKCS12 # Тип хранилища ключей (альтернатива JKS)
-    key-store: classpath:keystore/key-store.p12 # Путь до хранилища ключей (сгенерирован через openssl -export)
-    key-store-password: i1g9o9r7
-    key-alias: server
+# Убираю HTTPS из конфига. Нужный application.yml лежит на серваке
+#server:
+#  ssl:
+#    key-store-type: PKCS12 # Тип хранилища ключей (альтернатива JKS)
+#    key-store: classpath:keystore/key-store.p12 # Путь до хранилища ключей (сгенерирован через openssl -export)
+#    key-store-password: i1g9o9r7
+#    key-alias: server
 
 
 # Не выводить в логах CONDITIONS EVALUATION REPORT при старте (только в случае ошибки)
