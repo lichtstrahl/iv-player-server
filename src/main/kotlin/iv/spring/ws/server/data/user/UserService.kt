@@ -1,5 +1,7 @@
 package iv.spring.ws.server.data.user
 
+import iv.spring.ws.server.data.dto.BaseResponse
+import iv.spring.ws.server.error.ServerException
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -38,14 +40,10 @@ class UserService {
     }
 
     fun authUser(login: String, password: String): Boolean {
-        val user = userRepository.findByLogin(login)
+        val user: User = userRepository.findByLogin(login)
+                ?: throw ServerException("Пользователь $login не найден", BaseResponse.NOT_FOUND)
 
-        return if (user != null) {
-            return user.password == password
-        } else {
-            logger.warn("User with login=$login not found")
-            false
-        }
+        return user.password == password
     }
 
     fun loginFree(login: String): Boolean {

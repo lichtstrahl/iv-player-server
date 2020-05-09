@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*
 
 @Controller
 @RequestMapping("/api/rooms")
-class RoomController {
+class RoomController: BaseController() {
 
     @Autowired
     lateinit var roomService: RoomService
@@ -47,12 +47,5 @@ class RoomController {
     fun getUsersFromRoom(name: String): BaseResponse<List<UserEntityDTO>> {
         val users = roomService.getUsersInRoom(name)
         return BaseResponse.ok(userService.toEntityUserDTO(users))
-    }
-
-    @ResponseBody
-    @ResponseStatus(HttpStatus.OK)
-    @ExceptionHandler(ServerException::class)
-    fun handleException(exception: ServerException): BaseResponse<String> {
-        return BaseResponse.error(exception.errorCode, exception.msg)
     }
 }
