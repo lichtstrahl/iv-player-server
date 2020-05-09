@@ -47,6 +47,10 @@ class UserService {
         }
     }
 
+    fun loginFree(login: String): Boolean {
+        return userRepository.findByLogin(login) == null
+    }
+
     fun getUser(login: String): UserEntityDTO {
         val user = userRepository.findByLogin(login)
 

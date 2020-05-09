@@ -1,6 +1,7 @@
 package iv.spring.ws.server.controller
 
 import iv.spring.ws.server.data.dto.AuthResponse
+import iv.spring.ws.server.data.dto.FreeDTO
 import iv.spring.ws.server.data.user.UserCreateDTO
 import iv.spring.ws.server.data.user.UserEntityDTO
 import iv.spring.ws.server.data.user.UserService
@@ -30,5 +31,12 @@ class UserController {
         val auth: Boolean = userService.authUser(login, password)
         val user: UserEntityDTO = userService.getUser(login)
         return AuthResponse(user, auth)
+    }
+
+    @ResponseBody
+    @GetMapping("/login/free")
+    fun isFreeLogin(@RequestParam(name = "login") login: String): FreeDTO {
+        val free = userService.loginFree(login)
+        return FreeDTO(free)
     }
 }
